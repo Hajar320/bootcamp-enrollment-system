@@ -1,0 +1,152 @@
+### BOOTCAMP ENROLLMENT SYSTEM API TESTS
+@baseUrl = http://localhost:5000
+@studentToken = EXAMPLE_STUDENT_JWT_TOKEN
+@adminToken = EXAMPLE_ADMIN_JWT_TOKEN 
+@programId =  EXAMPLE_PROGRAM_ID
+
+
+###  HEALTH CHECK
+GET {{baseUrl}}/health
+
+
+// AUTHENTICATION & AUTHORIZATION
+
+### Register Student
+
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test Student",
+  "email": "student@test.com",
+  "password": "123456",
+  "role": "student"
+}
+
+
+### Register Admin
+
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test Admin",
+  "email": "admin@test.com",
+  "password": "123456",
+  "role": "admin"
+}
+
+### Login & Get Tokens
+### Login Student
+
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "student@test.com",
+  "password": "123456"
+}
+
+### Login Admin
+
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@test.com",
+  "password": "123456"
+}
+
+
+### 2.3 User Profile Management
+### Get Current User Info (Student)
+GET {{baseUrl}}/api/auth/me
+Authorization: Bearer {{studentToken}}
+
+### Get Current User Info (Admin)
+GET {{baseUrl}}/api/auth/me
+Authorization: Bearer {{adminToken}}
+
+
+### PROGRAMS MANAGEMENT
+
+
+###  Public Program Routes (No Auth Required)
+### Get All Programs
+GET {{baseUrl}}/api/programs
+
+### Get Program by ID
+GET {{baseUrl}}/api/programs/{{programId}}
+
+
+//---------------- Admin Program Management (Auth Required)
+
+
+### Get All Users
+Get http://localhost:5000/api/auth/users
+Authorization: Bearer {{adminToken}}
+
+
+### Create New Program
+
+POST {{baseUrl}}/api/programs
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "Full Stack Web Development Bootcamp",
+  "description": "Learn modern web development with React, Node.js, MongoDB and more",
+  "duration": "12 weeks",
+  "price": 2999,
+  "curriculum": [
+    "HTML5 & CSS3 Fundamentals",
+    "JavaScript ES6+",
+    "React & Redux", 
+    "Node.js & Express.js",
+    "MongoDB & Mongoose",
+    "REST API Development",
+    "Authentication & Authorization",
+    "Deployment & DevOps"
+  ],
+  "requirements": [
+    "Basic computer skills",
+    "Understanding of programming concepts",
+    "Dedication to learn 20+ hours per week"
+  ]
+}
+
+
+### Update Program by ID
+PUT {{baseUrl}}/api/programs/{{programId}}
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "Advanced Full Stack Development",
+  "description": "Updated with advanced topics and real-world projects",
+  "duration": "14 weeks",
+  "price": 3499,
+  "curriculum": [
+    "Advanced JavaScript",
+    "React Hooks & Context",
+    "Node.js Performance",
+    "Microservices Architecture",
+    "Docker & Kubernetes"
+  ]
+}
+
+### Partial Update (Only Price)
+PUT {{baseUrl}}/api/programs/{{programId}}
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "price": 2799
+}
+
+
+### Delete Program by ID
+DELETE {{baseUrl}}/api/programs/{{programId}}
+Authorization: Bearer {{adminToken}}
+
+
