@@ -35,31 +35,31 @@ A simple REST API for managing bootcamp programs with user authentication and ad
 bootcamp-enrollment-system/
 ├── src/
 │   ├── databases/
-│   │   └── connect-mongo.js
+│   │   └── connect-mongo.js          # MongoDB connection configuration
 │   ├── middlewares/
-│   │   ├── auth.js
-│   │   └── roles.js
+│   │   ├── auth.js                   # Authentication middleware
+│   │   └── roles.js                  # Role-based authorization middleware
 │   ├── modules/
-│   │   ├── auth/
-│   │   │   ├── model/
-│   │   │   ├── services/
-│   │   │   └── index.js
-│   │   ├── programs/
-│   │   │   ├── model/
-│   │   │   ├── services/
-│   │   │   └── index.js
-│   │   └── index.js
+│   │   ├── auth/                     # Authentication module
+│   │   │   ├── model/               # User data models
+│   │   │   ├── services/            # Authentication business logic
+│   │   │   └── index.js             # Module exports
+│   │   ├── programs/                # Programs module
+│   │   │   ├── model/               # Program data models
+│   │   │   ├── services/            # Program business logic
+│   │   │   └── index.js             # Module exports
+│   │   └── index.js                 # Modules aggregation
 │   ├── routes/
-│   │   ├── auth/
-│   │   ├── programs/
-│   │   └── index.js
-│   └── main.js
-├── seed/
-│   ├── programSeed.js
-│   └── userSeed.js
-├── .env
-├── package.json
-└── README.md
+│   │   ├── auth/                    # Authentication routes
+│   │   ├── programs/                # Program management routes
+│   │   └── index.js                 # Route aggregation
+│   └── main.js                      # Application entry point
+├── seed/                            # Database seeding scripts
+│   ├── programSeed.js              # Sample program data
+│   └── userSeed.js                 # Sample user data
+├── .env                            # Environment variables
+├── package.json                   # Project dependencies and scripts
+└── README.md                      # Project documentation
 
 
 ## 🛣️ API Endpoints
