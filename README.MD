@@ -31,8 +31,8 @@ A simple REST API for managing bootcamp programs with user authentication and ad
    ```
 📁 Project Structure
 
-```json
-make this suitable for readme file bootcamp-enrollment-system/
+```text
+bootcamp-enrollment-system/
 ├── src/
 │   ├── databases/
 │   │   └── connect-mongo.js
