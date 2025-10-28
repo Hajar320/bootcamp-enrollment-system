@@ -29,6 +29,38 @@ A simple REST API for managing bootcamp programs with user authentication and ad
    ```bash
    npm run dev
    ```
+📁 Project Structure
+
+```json
+make this suitable for readme file bootcamp-enrollment-system/
+├── src/
+│   ├── databases/
+│   │   └── connect-mongo.js
+│   ├── middlewares/
+│   │   ├── auth.js
+│   │   └── roles.js
+│   ├── modules/
+│   │   ├── auth/
+│   │   │   ├── model/
+│   │   │   ├── services/
+│   │   │   └── index.js
+│   │   ├── programs/
+│   │   │   ├── model/
+│   │   │   ├── services/
+│   │   │   └── index.js
+│   │   └── index.js
+│   ├── routes/
+│   │   ├── auth/
+│   │   ├── programs/
+│   │   └── index.js
+│   └── main.js
+├── seed/
+│   ├── programSeed.js
+│   └── userSeed.js
+├── .env
+├── package.json
+└── README.md
+```
 
 ## 🛣️ API Endpoints
 
