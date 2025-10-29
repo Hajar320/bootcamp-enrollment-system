@@ -123,11 +123,9 @@ bootcamp-enrollment-system/
 
 ## 🚀 Next Skills to Learn
 
-React.js - Build admin dashboard
+React.js - 
 
-Testing - Jest for API tests
-
-TypeScript - Add type safety
+TypeScript -
 
 Deployment - Deploy to cloud
 
