@@ -28,13 +28,6 @@ app.use((req, res,next) => {
   });
 });
 
-app.use((err, req, res, next) => {
-  res.status(STATUS_CODES.SERVER_ERROR).json({
-    success: false,
-    error: err.name || "Server Error",
-    message: err.message || "Something went wrong!",
-  });
-});
 
 // Health check
 app.get('/health', (req, res) => {
