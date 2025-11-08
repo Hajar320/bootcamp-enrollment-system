@@ -1,0 +1,93 @@
+<%- include('../layout/layout', {
+  content: `
+ <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
+  <div class="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md">
+    <h2 class="text-3xl font-bold mb-8 text-gray-800 text-center">Create Account</h2>
+
+    <form id="registerForm" class="space-y-6">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name"
+               class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 px-4 py-2">
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email"
+               class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 px-4 py-2">
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" placeholder="Create a password"
+               class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 px-4 py-2">
+      </div>
+
+      <div>
+        <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+        <select id="role"
+                class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 px-4 py-2">
+          <option value="">Select role</option>
+          <option value="student">Student</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <button href="pages/login"  type="submit"
+              class="w-full bg-green-500 text-white py-3 rounded-lg font-medium hover:bg-green-600 transition">
+        Register
+      </button>
+    </form>
+
+    <p class="mt-6 text-sm text-gray-500 text-center">
+      Already have an account? 
+      <a href="pages/login" class="text-green-500 font-medium hover:underline">Login</a>
+    </p>
+  </div>
+</div>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("registerForm");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const role = document.getElementById("role").value.trim().toLowerCase();
+       
+
+        if (!name || !email || !password || !role) {
+          alert("Please fill in all fields.");
+          return;
+        }
+
+        try {
+          const res = await fetch("/api/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password, role }),
+          });
+
+          const data = await res.json();
+
+          if (res.ok) {
+            alert(data.message || "Registration successful!");
+            window.location.href = "/ejs/pages";
+          } else {
+            alert(data.error || "Registration failed.");
+             
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Something went wrong. Please try again.");
+          
+        }
+      });
+    });
+  </script>
+  `
+}) %>

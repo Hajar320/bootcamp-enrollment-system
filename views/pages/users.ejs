@@ -1,0 +1,65 @@
+<%- include('../layout/layout', {
+  content: `
+  <div class="flex flex-col items-center justify-center min-h-screen bg-gray-50 py-10 px-4">
+    <h1 class="text-4xl font-bold mb-10 text-gray-800">Users</h1>
+
+    <div class="grid gap-6 w-full max-w-2xl sm:grid-cols-1 md:grid-cols-2">
+      ${users.map(user => `
+        <div class="p-6 border rounded-2xl bg-white shadow-lg hover:shadow-xl transition flex flex-col justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold mb-2 text-gray-800">${user.name}</h2>
+            <p class="text-gray-600 mb-1"><span class="font-medium">Email:</span> ${user.email}</p>
+            <p class="text-gray-600"><span class="font-medium">Role:</span> ${user.role}</p>
+          </div>
+
+          <!-- Delete button -->
+          <button 
+            onclick="deleteUser('${user.id}')"
+            class="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition"
+          >
+            Delete
+          </button>
+        </div>
+      `).join('')}
+    </div>
+  </div>
+
+<script>
+    async function deleteUser(userId) {
+      if (!confirm("Are you sure you want to delete this user?")) return;
+
+      try {
+        // ✅ Retrieve token from localStorage (stored during login)
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          alert("No token found. Please log in again.");
+          window.location.href = "/ejs/pages/login";
+          return;
+        }
+
+        // ✅ Use the correct endpoint (no /auth/)
+        const res = await fetch(\`/api/auth/users/\${userId}\`, {
+          method: "DELETE",
+          headers: {
+            "Authorization": \`Bearer \${token}\`,
+            "Content-Type": "application/json"
+          }
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          alert("User deleted successfully!");
+          location.reload();
+        } else {
+          alert(data.message || "Failed to delete user.");
+        }
+      } catch (err) {
+        console.error("Error deleting user:", err);
+        alert("Something went wrong.");
+      }
+    }
+  </script>
+    `
+}) %>

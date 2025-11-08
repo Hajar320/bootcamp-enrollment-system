@@ -1,0 +1,75 @@
+<%- include('../layout/layout', {
+  content: `
+  <!-- HERO SECTION -->
+  <div class="min-h-screen bg-gray-50 flex flex-col justify-between">
+        
+    <!-- HERO -->
+    <section class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-6 py-16">
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <h2 class="text-4xl font-extrabold text-gray-800 leading-snug mb-6">
+          Upgrade Your Skills with Our Bootcamp
+        </h2>
+        <p class="text-gray-600 mb-8">
+          Join our Bootcamp Enrollment System to start your learning journey.
+          Whether you're a student or an admin, you can manage programs, enroll, and track progress easily.
+        </p>
+        <div class="space-x-4">
+          <a href="/ejs/pages/register" class="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 transition">Register</a>
+          <a href="/ejs/pages/login" class="border border-green-500 text-green-600 px-6 py-3 rounded-md hover:bg-green-50 transition">Login</a>
+        </div>
+      </div>
+      <div class="md:w-1/2 flex justify-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/4906/4906330.png" alt="Bootcamp Illustration" class="w-80 h-80 object-contain">
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="bg-white py-16">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Why Choose Our Bootcamp?</h3>
+        <p class="text-gray-600 mb-8">
+          Our bootcamp system helps students easily register, enroll in programs, and track their learning progress — 
+          while admins can manage students and programs efficiently.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 bg-gray-50 rounded-lg shadow hover:shadow-md transition">
+            <h4 class="font-bold text-green-600 mb-2">Interactive Learning</h4>
+            <p class="text-gray-600">Hands-on, project-based training for real-world experience.</p>
+          </div>
+          <div class="p-6 bg-gray-50 rounded-lg shadow hover:shadow-md transition">
+            <h4 class="font-bold text-green-600 mb-2">Expert Mentors</h4>
+            <p class="text-gray-600">Get guidance from industry professionals and expert instructors.</p>
+          </div>
+          <div class="p-6 bg-gray-50 rounded-lg shadow hover:shadow-md transition">
+            <h4 class="font-bold text-green-600 mb-2">Career Focused</h4>
+            <p class="text-gray-600">Gain job-ready skills with career mentorship and resume support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS SECTION -->
+    <section class="py-16 bg-gray-100">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-10">Popular Bootcamp Programs</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/2721/2721296.png" alt="Web Dev" class="w-16 h-16 mx-auto mb-4">
+            <h4 class="font-bold text-gray-800 mb-2">Full Stack Web Development</h4>
+            <p class="text-gray-600">Learn to build modern, scalable web applications using MERN Stack.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/2886/2886665.png" alt="Data Science" class="w-16 h-16 mx-auto mb-4">
+            <h4 class="font-bold text-gray-800 mb-2">Data Science & AI</h4>
+            <p class="text-gray-600">Master data analysis, visualization, and machine learning with Python.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png" alt="UI/UX" class="w-16 h-16 mx-auto mb-4">
+            <h4 class="font-bold text-gray-800 mb-2">UI/UX Design</h4>
+            <p class="text-gray-600">Design intuitive and engaging user experiences for digital products.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  `
+}) %>

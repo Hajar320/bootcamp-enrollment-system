@@ -1,0 +1,111 @@
+<%- include('../layout/layout', {
+  content: `
+        
+   <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 to-blue-200 p-4">
+  <div class="bg-white shadow-2xl rounded-2xl p-10 w-full max-w-md">
+    <h2  class="text-3xl font-bold mb-8 text-gray-800 text-center">Login</h2>
+    
+    <form id="loginform" class="space-y-6">
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition"
+          placeholder="Enter your email"
+        >
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition"
+          placeholder="Enter your password"
+        >
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition shadow-md hover:shadow-lg"
+      >
+        Login
+      </button>
+    </form>
+
+    <div class="mt-4 text-center text-sm text-gray-600">
+      Don't have an account? 
+      <a href="/ejs/pages/register" class="text-blue-500 hover:underline">Register</a>
+    </div>
+
+    <div class="mt-2 text-center text-sm">
+      <a href="#" class="text-blue-400 hover:underline">Forgot password?</a>
+    </div>
+  </div>
+</div>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("loginform");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+       
+
+        if (!password || !email ) {
+          alert("Please fill in all fields.");
+          return;
+        }
+
+        try {
+          const res = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body:JSON.stringify({email,password})
+          });
+
+          const data = await res.json();
+
+         if (res.ok) {
+          // ✅ Successful login
+          alert(data.message || "Login successful!");
+
+          // Optionally store JWT token (if your backend returns it)
+          if (data.data.token) {
+            localStorage.setItem("token", data.data.token);
+          }
+           if (data.data.role) {
+            localStorage.setItem("role", data.data.role);
+          }
+
+
+          // Redirect based on role (if backend returns one)
+          if (data.data && data.data.role.toLowerCase() === "admin") {
+            console.log("Login response:", data);
+            window.location.href = "/ejs/pages/admin";
+
+          } else {
+            console.log("Login response:", data);
+            window.location.href = "/ejs/pages/student";
+          }
+
+        } else {
+          // ❌ Backend returned error (invalid credentials, etc.)
+          alert(data.error || "Invalid email or password.");
+        }
+      } catch (err) {
+        console.error("Login error:", err);
+        alert("Something went wrong. Please try again later.");
+      }
+    });
+  });
+  </script>
+
+       
+  `
+}) %>
