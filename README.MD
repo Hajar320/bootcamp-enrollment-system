@@ -26,7 +26,9 @@ This system addresses the challenges of managing educational bootcamp programs b
 - **REST API Design** - Clean, structured, and scalable endpoints
 
 📄 Page Overview
+
 🌐 Public Pages
+
 Home (ejs/pages/) - Landing page with program overview
 
 Login (ejs/pages/login) - User authentication
@@ -34,6 +36,7 @@ Login (ejs/pages/login) - User authentication
 Register (ejs/pages/register) - Account creation with role selection
 
 👨‍💼 Admin Pages
+
 Admin Dashboard (ejs/pages/admin) - System overview and management
 
 Program Management (ejs/pages/programs) - Add, edit, and delete programs
@@ -41,6 +44,7 @@ Program Management (ejs/pages/programs) - Add, edit, and delete programs
 User Management (ejs/pages/users) - View and manage all users
 
 🎓 Student Pages
+
 Student Dashboard (ejs/pages/student) - Personalized learning portal
 
 Programs (ejs/pages/programs) - Browse all available bootcamps
@@ -161,4 +165,5 @@ The application includes sample programs such as:
 - [ ] **File Uploads** - Profile pictures and course materials
 - [ ] **Advanced Analytics** - User engagement and program performance
 - [ ] **Real-time Features** - WebSocket integration for live updates
+
 
